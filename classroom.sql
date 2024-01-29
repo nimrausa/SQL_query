@@ -1,0 +1,66 @@
+CREATE DATABASE COLLEGE;
+USE college;
+
+DROP TABLE STUDENT;
+CREATE TABLE STUDENT(
+ROLLNO INT PRIMARY KEY,
+NAME VARCHAR(50),
+MARKS INT,
+GRADE VARCHAR(1),
+CITY VARCHAR(20)
+);
+
+INSERT INTO STUDENT
+(ROLLNO, NAME, MARKS, GRADE, CITY)
+VALUES
+(1, "BOB", 45, "D", "KENT"),
+(2, "KAM", 95, "A", "CHICAGO"),
+(3, "ADAM", 55, "C", "LOS ANGELS"),
+(4, "ANAM", 65, "B", "KENT"),
+(5, "AMNA", 89, "A", "DALLAS");
+
+SELECT CITY FROM STUDENT;
+SELECT distinct CITY FROM STUDENT;
+
+INSERT INTO STUDENT
+(ROLLNO, NAME, MARKS, GRADE, CITY)
+VALUES
+(6, "KAM", 85, "C", "LOS ANGELS"),
+(7, "HEENA", 95, "B", "KENT"),
+(8, "JOHN", 78, "A", "Houstan");
+select * FROM STUDENT ORDER BY MARKS DEsc limit 3;
+select grade, city , count(grade) from student
+group  by grade, city;
+
+select city, avg(marks) , count(NAME)
+from student
+group by city
+order by city;
+
+SELECT CITY, COUNT(ROLLNO)
+FROM STUDENT
+GROUP BY CITY
+HAVING MAX(MARKS) > 80;
+
+select city
+from student
+where grade= "A"
+GROUP BY CITY
+HAVING MAX(MARKS) > 80
+ORDER BY CITY ASC;
+
+SET SQL_SAFE_UPDATES=0;
+
+UPDATE STUDENT 
+SET GRADE="0"
+WHERE MARKS BETWEEN 90 AND 100;
+
+SELECT *  FROM  STUDENT;
+
+UPDATE STUDENT
+SET MARKS=MARKS-5;
+
+SELECT * FROM STUDENT;
+
+
+
